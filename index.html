@@ -1,13 +1,93 @@
+<!DOCTYPE html>
 <html>
-<head>
-  <style>
-    body 
-    {
-      background-image: url("https://i.ibb.co/bd0457M/INDEX2.jpg");
+  <head>
+    <style>
+      .slider {
+        height: 800px;
+        width: 1200px;
+        margin: 50px auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .slider img {
+        height: 800px;
+        width: 1200px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+        transition: opacity 1s;
+      }
+
+      .slider img.active {
+        opacity: 1;
+      }
+
+      .prev, .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        //--background-color: rgba(0,0,0,0.5);
+        color: #fff;
+        padding: 10px 20px;
+        cursor: pointer;
+        //--border-radius: 50%;
+        font-size: 36px;
+      }
+
+      .prev {
+        left: 20px;
+      }
+
+      .next {
+        right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="slider">
+	<div class="active" width="500">
+		IMAGE
+	</div>
+      <img src="https://i.ibb.co/fQfmBdk/dilan-one.jpg">
+      <img src="https://i.ibb.co/fQfmBdk/dilan-one.jpg">
+      <img src="https://i.ibb.co/BZ5BKPg/DILAN-TWO.jpg">
+      <a class="prev">&#10094;</a>
+      <a class="next">&#10095;</a>
+    </div>
+  </body>
+  <script>
+    var index = 0;
+    var slides = document.querySelectorAll(".slider img");
+    var prev = document.querySelector(".prev");
+    var next = document.querySelector(".next");
+
+    function showSlide() {
+      for (var i = 0; i < slides.length; i++) {
+        slides[i].classList.remove("active");
+      }
+      slides[index].classList.add("active");
     }
-  </style>
-<title>dilan.rs</title>
-</head>
-<body>
-</body>
+
+    prev.addEventListener("click", function() {
+      if (index === 0) {
+        index = slides.length - 1;
+      } else {
+        index--;
+      }
+      showSlide();
+    });
+
+    next.addEventListener("click", function() {
+      if (index === slides.length - 1) {
+        index = 0;
+      } else {
+        index++;
+      }
+      showSlide();
+    });
+
+    showSlide();
+  </script>
 </html>
